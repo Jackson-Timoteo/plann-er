@@ -1,13 +1,23 @@
+import { Calendar, MapPin } from "lucide-react";
+
 export function App() {
 
   return (
     <div className="h-screen flex items-center justify-center">
-      <div className="max-w-3xl px-6 text-center space-y-10">
+      <div className="max-w-3xl w-full px-6 text-center space-y-10">
         <p className="text-zinc-300 text-lg">Convide seus amigoos e planeja sua próxima viagem</p>
         
-        <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center">
-          <input type="text" placeholder="Para onde você deseja viajar?" />
-          <input type="text" placeholder="Quando?" />
+        <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape">
+
+          <div className="flex items-center gap-2">
+            <MapPin className="size-5 text-zinc-400"/>
+            <input type="text" placeholder="Para onde desejar ir?" className="bg-transparent placeholder-zinc-400"/>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Calendar className="size-5 text-zinc-400"/>
+            <input type="text" placeholder="Quando?" className="bg-transparent text-lg placeholder-zinc-400"/>
+          </div>
 
           <button>Continuar</button>
         </div> 
