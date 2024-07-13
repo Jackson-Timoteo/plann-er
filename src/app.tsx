@@ -34,11 +34,17 @@ export function App() {
     if(!email) {
       return
     }
-    
+
+    if(emailToInvite.includes(email)) {
+      return
+    }
+
     setEmailsToInvite([
       ...emailToInvite,
       email
     ]);
+
+    event.currentTarget.reset()
   };
 
 
