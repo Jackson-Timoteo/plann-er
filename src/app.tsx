@@ -1,12 +1,30 @@
-import { ArrowRight, Calendar, MapPin, UserRoundPlus } from "lucide-react";
+import { ArrowRight, AtSign, Calendar, MapPin, Plus, Settings2, UserRoundPlus, X } from "lucide-react";
 import { useState } from "react";
 
 export function App() {
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false)
+  const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
+  const [emailTrueInvite, setEmailsToInvite] = useState([
+    'jackson@gmail.com.br'
+  ])
+
 
   function openGuestsInput() {
     setIsGuestsInputOpen(true)
+  };
+
+  function closeGuestInput() {
+    setIsGuestsInputOpen(false)
+  };
+
+  function openGuestModal() {
+    setIsGuestsModalOpen(true)
+  };
+
+  function closeGuestModal() {
+    setIsGuestsModalOpen(false)
   }
+
 
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
@@ -22,19 +40,22 @@ export function App() {
 
             <div className="flex items-center gap-2 flex-1">
               <MapPin className="size-5 text-zinc-400"/>
-              <input type="text" placeholder="Para onde desejar ir?" className="bg-transparent placeholder-zinc-400 outline-none flex-1"/>
+              <input disabled={isGuestsInputOpen} type="text" placeholder="Para onde desejar ir?" className="bg-transparent placeholder-zinc-400 outline-none flex-1"/>
             </div>
 
             <div className="flex items-center gap-2">
               <Calendar className="size-5 text-zinc-400"/>
-              <input type="text" placeholder="Quando?" className="bg-transparent text-lg placeholder-zinc-400 outline-none"/>
+              <input disabled={isGuestsInputOpen} type="text" placeholder="Quando?" className="bg-transparent text-lg placeholder-zinc-400 outline-none"/>
             </div>
 
             <div className="w-px h-6 bg-gray-300" />
 
             
             {isGuestsInputOpen ? (
-              <button>Alterar Local/Data</button>
+              <button onClick={closeGuestInput} className="bg-zinc-800 text-zinc-200 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-zinc-700">
+                Alterar Local/Data
+                <Settings2 className="size-5" />
+              </button>
             ) : (
               <button onClick={openGuestsInput} className="bg-purple-700 text-white rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-purple-600">
                 Continuar
@@ -46,15 +67,11 @@ export function App() {
 
           {isGuestsInputOpen && (
             <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-
-              <div className="flex items-center gap-2 flex-1">
+ 
+              <button type="button" onClick={openGuestModal} className="flex items-center gap-2 flex-1 text-left">
                 <UserRoundPlus className="size-5 text-zinc-400"/>
-                <input 
-                  type="text" 
-                  placeholder="Quem irá viajar com você?" 
-                  className="bg-transparent placeholder-zinc-400 outline-none flex-1"
-                />
-              </div>
+                <span className="text-zinc-400 text-lg flex-1">Quem irá viajar com você?</span>
+              </button>
   
               <button className="bg-purple-700 text-white rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-purple-600">
                 Confirmar viagem
@@ -68,6 +85,48 @@ export function App() {
            com nossos <a className="text-zinc-300" href="#">termos de uso</a> e <a className="text-zinc-300" href="#">politica de privacidade</a>
         </p>
       </div>
+
+      {isGuestsModalOpen && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
+          <div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold">Selecionar convidados</h2>
+                <button type="button" onClick={closeGuestModal}>
+                  <X className="size-5 text-zinc-400" />
+                </button>
+              </div>
+              <p className="text-sm text-zinc-400">
+                Os convidados irão receber e-mails para confirmar a participação da viagem.
+                </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {emailTrueInvite.map(email => {
+                return (
+                  <div key={email} className="py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2">
+                    <span className="text-zinc-300">{email}</span>
+                    <button type="button" className="">
+                      <X className="size-4 text-zinc-400"/>
+                    </button>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="w-full h-px bg-zinc-800" />
+
+            <form className="p-2.5 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
+              <div className="px-2 flex"></div>
+              <AtSign className="text-zinc-400 size-5" />
+              <input type="text" placeholder="Digite o e-mail dos convidados" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"/>
+              <button onClick={openGuestsInput} className="bg-purple-700 text-white rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-purple-600">
+                Convidar
+                <Plus className="size-5 text-white" />
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
