@@ -1,8 +1,4 @@
-import {
-    ArrowRight,
-    UserRoundPlus,
-  } from "lucide-react";
-  import { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InviteGuestsModal } from "./invite.guests-model";
 import { ConfirmTripModal } from "./confirm-trip-modal";
