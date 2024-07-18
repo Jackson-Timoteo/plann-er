@@ -79,7 +79,7 @@ import { InviteGuestsStep } from "./steps/invite-guests-step";
           <div className="flex flex-col items-center gap-3">
             <img src="/logo.svg" alt="plann.er" />
             <p className="text-zinc-300 text-lg">
-              Convide seus amigoos e planeja sua próxima viagem
+              Convide seus amigos e planeja sua próxima viagem
             </p>
           </div>
   
@@ -93,7 +93,7 @@ import { InviteGuestsStep } from "./steps/invite-guests-step";
             {isGuestsInputOpen && (
               <InviteGuestsStep 
               openGuestsModal={openGuestsModal}
-              openConfirmTripModal={openGuestsModal}
+              openConfirmTripModal={openConfirmTripModal}
               emailToInvite={emailToInvite}
               />
             )}
