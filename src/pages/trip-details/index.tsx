@@ -1,8 +1,9 @@
-import { Calendar, CircleCheck, CircleDashed, Link2, MapPin, Plus, Settings2, Tag, UserCircle, X } from "lucide-react";
+import { Calendar, MapPin, Plus, Settings2, } from "lucide-react";
 import { useState } from "react";
 import { CreateActivityModal } from "./create-activity-modal";
 import { ImpoortantLinks } from "./important-links";
 import { Guests } from "./guests";
+import { Activites } from "./activites";
 
 export function TripDetailsPage() {
   const [ isCreateActivityModalOpen, setIsCreateActivityModalOpen ] = useState(false);
@@ -47,6 +48,7 @@ export function TripDetailsPage() {
             </button>
           </div>
 
+          <Activites />
         </div>
 
         <div className="w-80 space-y-6">
