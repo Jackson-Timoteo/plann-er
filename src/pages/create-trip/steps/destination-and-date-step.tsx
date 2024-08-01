@@ -46,7 +46,7 @@ export function DestinationAndDateStep({
 
     ) : (
 
-      <Button onClick={openGuestsInput} variant="primary">
+      <Button onClick={openGuestsInput} variant="secondary">
         Continuar
         <ArrowRight className="size-5 text-white" />
       </Button>
