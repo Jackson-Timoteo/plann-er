@@ -4,6 +4,7 @@ import { InviteGuestsModal } from "./invite.guests-model";
 import { ConfirmTripModal } from "./confirm-trip-modal";
 import { DestinationAndDateStep } from "./steps/destination-and-date-step";
 import { InviteGuestsStep } from "./steps/invite-guests-step";
+import { DateRange } from "react-day-picker";
   
   export function CreateTripPage() {
     const navigate = useNavigate();
@@ -11,6 +12,12 @@ import { InviteGuestsStep } from "./steps/invite-guests-step";
     const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false);
     const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false);
     const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false);
+
+    const [destination, setDestination] = useState('')
+    const [ownerName, setOwnerName] = useState('')
+    const [ownerEmail, setOwnerEmail ] = useState('')
+    const [eventStartAndEndDates, setEventStartAndEndDates] = useState<DateRange | undefined>()
+
   
    
     const [emailToInvite, setEmailsToInvite] = useState(["jackson@gmail.com.br"]);
@@ -70,7 +77,15 @@ import { InviteGuestsStep } from "./steps/invite-guests-step";
     function createTrip(event: FormEvent<HTMLFormElement>) {
 
       event.preventDefault()
-      navigate('/trips/123')
+
+      console.log(destination)
+      console.log(eventStartAndEndDates)
+      console.log(emailToInvite)
+      console.log(ownerName)
+      console.log(ownerEmail)
+
+
+      //navigate('/trips/123')
     };
   
     return (
@@ -88,6 +103,9 @@ import { InviteGuestsStep } from "./steps/invite-guests-step";
               closeGuestInput={closeConfirmTripModal}
               isGuestsInputOpen={isGuestsInputOpen}
               openGuestsInput={openGuestsInput} 
+              setDestination={setDestination}
+              eventStartAndEndDates={eventStartAndEndDates}
+              setEventStartAndEndDates={setEventStartAndEndDates}
             />
 
             {isGuestsInputOpen && (
@@ -118,6 +136,8 @@ import { InviteGuestsStep } from "./steps/invite-guests-step";
           <ConfirmTripModal 
             closeConfirmTripModal={closeConfirmTripModal}
             createTrip={createTrip}
+            setOwnerName={setOwnerName}
+            setOwnerEmail={setOwnerEmail}
           />
         )}
       </div>

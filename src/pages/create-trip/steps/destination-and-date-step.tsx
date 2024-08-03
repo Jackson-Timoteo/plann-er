@@ -8,17 +8,22 @@ import { format } from "date-fns";
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean;
   openGuestsInput: () => void;
+  eventStartAndEndDates:  DateRange | undefined
   closeGuestInput: () => void;
+  setDestination: (destination: string) => void;
+  setEventStartAndEndDates: (dates: DateRange | undefined) => void
 }
 
 export function DestinationAndDateStep({
   isGuestsInputOpen,
   openGuestsInput,
   closeGuestInput,
+  setDestination,
+  setEventStartAndEndDates,
+  eventStartAndEndDates,
 }: DestinationAndDateStepProps) {
   const [isDatePickerOpen, setIsDatePicker] = useState(false);
-  const [eventStartAndEndDates, setEventStartAndEndDates] = useState<DateRange | undefined>()
-
+ 
   function openDatePicker() {
     return setIsDatePicker(true);
   }
@@ -40,6 +45,7 @@ export function DestinationAndDateStep({
           type="text"
           placeholder="Para onde desejar ir?"
           className="bg-transparent placeholder-zinc-400 outline-none flex-1"
+          onChange={event => setDestination(event.target.value)}
         />
       </div>
 
