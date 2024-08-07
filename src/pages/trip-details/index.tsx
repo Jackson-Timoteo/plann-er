@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CreateActivityModal } from "./create-activity-modal";
 import { ImpoortantLinks } from "./important-links";
 import { Guests } from "./guests";
-import { Activites } from "./activites";
+import { Activites } from "./activities";
 import { DestinationAndDateHeader } from "./destination-and-date-header";
 
 export function TripDetailsPage() {
